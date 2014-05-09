@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <script src='../../../../../../javascript/application.js'></script>
+  <script src='../../../../../../javascript/search.js'></script>
+  <link rel='stylesheet' href='../../../../../../stylesheets/application.css' type='text/css'>
+</head>
+  <body>
+    <div id='base' data-path='../../../../../../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../../../../../../extra/README.md.html' title='Mercury'>
+      Mercury
+    </a>
+    &raquo;
+    <a href='../../../../../../alphabetical_index.html' title='Index'>
+      Index
+    </a>
+    &raquo;
+    <span class='title'>portal</span>
+    &raquo;
+    <span class='title'>src</span>
+    &raquo;
+    <span class='title'>main</span>
+    &raquo;
+    <span class='title'>webapp</span>
+    &raquo;
+    <span class='title'>coffee-script</span>
+    &raquo;
+    <span class='title'>loading-indication.coffee</span>
+  </div>
+</div>
+    <div id='content'>
+      <h1>
+        File:
+        loading-indication.coffee
+      </h1>
+      <table class='box'>
+        <tr>
+          <td>Defined in:</td>
+          <td>portal&#47;src&#47;main&#47;webapp&#47;coffee-script</td>
+        </tr>
+      </table>
+      <h2>Method Summary</h2>
+      <ul class='summary'>
+  <li>
+    <span class='signature'>
+      <a href='#elemica.markAsLoading-'>
+        ~
+(void)
+<b>elemica.markAsLoading</b><span>($container, onComplete)</span>
+      </a>
+    </span>
+    <span class='desc'>
+      This function will mark the given container as loading. 
+    </span>
+  </li>
+</ul>
+      <h2>Method Details</h2>
+      <div class='methods'>
+  <div class='method_details'>
+    <p class='signature' id='elemica.markAsLoading-'>
+      ~
+(void)
+<b>elemica.markAsLoading</b><span>($container, onComplete)</span>
+      <br>
+    </p>
+    <div class='docstring'>
+  <p>This function will mark the given container as loading. This means we run a
+heuristic to determine the best place to put a loading spinner, and disable
+any inputs within the contaainer. We also mark the container with a class,
+&#39;submitting&#39;.</p><p>The second thing this does is install an event handler on the container
+element, watching for the &#39;form-submission-completed&#39; event. When seen,
+the form is restored to its original state. A callback can be passed that
+will be invoked when the form submission is completed for any additional
+resetting tasks you may need to do.</p>
+</div>
+<div class='tags'>
+</div>
+  </div>
+</div>
+    </div>
+    <div id='footer'>
+  May 09, 14 06:23:50 by
+  <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
+    Codo
+  </a>
+  2.0.8
+  &#10034;
+  Press H to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/netzpirat' target='_parent'>@netzpirat</a>
+  &#10034;
+  <a href='http://twitter.com/_inossidabile' target='_parent'>@_inossidabile</a>
+</div>
+<iframe id='search_frame'></iframe>
+<div id='fuzzySearch'>
+  <input type='text'>
+  <ol></ol>
+</div>
+<div id='help'>
+  <p>
+    Quickly fuzzy find classes, mixins, methods, file:
+  </p>
+  <ul>
+    <li>
+      <span>T</span>
+      Open fuzzy finder dialog
+    </li>
+  </ul>
+  <p>
+    Control the navigation frame:
+  </p>
+  <ul>
+    <li>
+      <span>L</span>
+      Toggle list view
+    </li>
+    <li>
+      <span>C</span>
+      Show class list
+    </li>
+    <li>
+      <span>I</span>
+      Show mixin list
+    </li>
+    <li>
+      <span>F</span>
+      Show file list
+    </li>
+    <li>
+      <span>M</span>
+      Show method list
+    </li>
+    <li>
+      <span>E</span>
+      Show extras list
+    </li>
+  </ul>
+  <p>
+    You can focus and blur the search input:
+  </p>
+  <ul>
+    <li>
+      <span>S</span>
+      Focus search input
+    </li>
+    <li>
+      <span>Esc</span>
+      Blur search input
+    </li>
+  </ul>
+</div>
+  </body>
+</html>

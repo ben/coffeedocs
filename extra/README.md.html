@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='UTF-8'>
+  <title>CoffeeScript API Documentation</title>
+  <script src='../javascript/application.js'></script>
+  <script src='../javascript/search.js'></script>
+  <link rel='stylesheet' href='../stylesheets/application.css' type='text/css'>
+</head>
+  <body>
+    <div id='base' data-path='../'></div>
+<div id='header'>
+  <div id='menu'>
+    <a href='../extra/README.md.html' title='Mercury'>
+      Mercury
+    </a>
+    &raquo;
+    <a href='../alphabetical_index.html' title='Index'>
+      Index
+    </a>
+    &raquo;
+    <span class='title'>README.md</span>
+  </div>
+</div>
+    <div id='content'>
+      <nav class='toc'>
+        <p class='title'>
+          <a class='hide_toc' href='#'>
+            <strong>Table of Contents</strong>
+          </a>
+          <small>
+            (<a class='float_toc' href='#'>left</a>)
+          </small>
+        </p>
+      </nav>
+      <div id='filecontents'>
+        <h1 id="readme-for-mercury">README for mercury</h1>
+<h2 id="getting-started">Getting Started</h2><p>We recommend taking a look at the <a href="StyleGuide.md">style guide</a> in the top of this project if you&#39;re new to mercury. It includes
+a basic description of things like commit standards, process rules, etc.</p><p>Additionally, here are some useful tags to look at in Flowdock for information:</p><ul>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=protip">#protip</a>: various tips folks have run across that are useful when working with mercury</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=flowdock-resources">#flowdock-resources</a>: Flowdock-related handiness.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=flowhelp">#flowhelp</a>: More flowdock-related handiness.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=git">#git</a>: Specifically git tips, or git questions with answers in their threads.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=usefultools">#usefultools</a>: Various useful tools folks have found.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=uberconference">#uberconference</a>: Uberconference dial-in info.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=targetprocess">#targetprocess</a>: Tidbits about Target Process&lt;-&gt;Github integration.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=keyboard-shortcut">#keyboard-shortcut</a>: Useful keyboard shortcuts.</li>
+<li><a href="https://www.flowdock.com/app/elemica/main/filter/all?tags=style">#style</a>: Style discussions.</li>
+</ul>
+<h3 id="ivy">Ivy</h3><p>Send your public key to sloan.thompson@elemica.com so that it can be
+installed with the Ivy repository.</p><p>Hint: SBT using Ivy will always ask for the SSH key passphrase to establish a connection, and that for every
+SNAPSHOT dependency encountered that&#39;s versioned in our local build (i.e. not found somewhere in the net on the
+Maven servers etc.). This means that compiling becomes quite annoying as you have to type in the key over and
+over again. Unfortunately, Ivy doesn&#39;t use ssh-agents. Best remedy is to have a SSH key without passphrase. If
+you already have one, remove it.</p><h3 id="sbt">SBT</h3><p>Version 0.13 - install via brew (<code>brew install sbt</code>), or here: <a href="http://www.scala-sbt.org/">http://www.scala-sbt.org/</a></p><h3 id="rabbit-mq">Rabbit MQ</h3><p>Dependency needed for certain fabric tests and scribe features.
+Install via brew (that hash came from <code>brew versions rabbitmq</code>):</p><pre><code class="lang-bash">$ cd /usr/local
+$ git checkout 3fbcdd0 Library/Formula/rabbitmq.rb
+$ brew install rabbitmq
+</code></pre><p>… and run. Either from the console (<code>rabbitmq-server start</code>), or on login:</p><pre><code class="lang-bash">$ mkdir -p ~/Library/LaunchAgents
+$ cp /usr/local/Cellar/rabbitmq/3.2.4/homebrew.mxcl.rabbitmq.plist ~/Library/LaunchAgents/
+$ launchctl load -w ~/Library/LaunchAgents/homebrew.mxcl.rabbitmq.plist
+</code></pre>
+<h2 id="project-overview">Project Overview</h2>
+<h3 id="common">Common</h3><p>Frequently used bits across projects, not a lot of depth here, honestly.</p><h3 id="concept-definition">Concept-definition</h3><p>The core of our messaging transformations and definition.  Here we
+define our &quot;Business Concepts&quot;, message formats, and the
+transformations between formats.
+This also includes functions that enable transformation and validation
+(Cross-Reference, XSDValidation, etc.)</p><h3 id="fabric">Fabric</h3><p>This is the processing service component.  This includes the Akka
+service components of the methods in concept definition and general
+service interaction definitions.  The Guide/Mouse/Warden are key
+components in ensuring that messages are successfully processed within
+the system.</p><h3 id="masterdata">Masterdata</h3><p>This is an independent component of Mercury that is deployed in the
+existing infrastructure.  It includes an API for accessing data on the
+SmartLink platform as well as a &quot;Rica-Lite&quot; component that is used to
+send/receive messages from/to Mercury.</p><h3 id="persistence">Persistence</h3><p>Also known scribe, this is the component that manages all of our
+persistence and abstractions.</p><h3 id="portal">Portal</h3><p>This is the UI component used to configure and access all other
+components of the system.  The main modules are the home wall,
+discovery, campaign management, dashboard, collaboration (project
+rooms), and administration tasks.</p><h3 id="rabbitmq-client">Rabbitmq-client</h3><p>Exactly what the name implies, our lightweight RabbitMQ client.</p><h3 id="rica">Rica</h3><p>This is the external interface for messaging.  It receives messages
+inbound and enqueues them for processing.  It dequeues messages from
+the fabric and delivers them to the external world.</p><h3 id="universe">Universe</h3><p>These are model objects and other cross-project definition items.</p><h3 id="xmlutil">XMLUtil</h3><p>Some basic utilities for processing/interacting with XML messages.
+Not very widely used, but necessary.</p><h2 id="running-the-portal">Running the Portal</h2>
+<h3 id="coffeescript">CoffeeScript</h3><p>We use CoffeeScript, so you need to install the coffee executable. On
+Mac OS X, this involves installing node and then using npm to globally
+install the coffee-script package:</p><pre><code class="lang-bash">$ brew install node
+$ npm install -g coffee-script
+</code></pre><p>You&#39;ll also want to add the global npm bin directory to your &quot;PATH&quot;.
+On OS X, that is <code>/usr/local/share/npm/bin</code>.</p><p>When you make either CoffeeScript or JavaScript changes, you will need
+to run <code>resources:copy-scripts</code> in portal project for sbt. You can run
+it continuously by running <code>~resources:copy-scripts</code>. This will detect
+JS and CoffeeScript changes, compile the CoffeeScript if necessary,
+and copy the scripts to src/main/webapp/static/js where they belong.</p><h3 id="sbt-configuration">SBT configuration</h3><p>Create a file named <code>~/.sbtconfig</code>, and put this in it:</p><pre><code class="lang-sh">SBT_OPTS=&quot;-XX:+CMSClassUnloadingEnabled -Xmx2048M -XX:MaxPermSize=1024M -DSCRIBE_NO_AUDIT=true -Dcom.elemica.env=lcl -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005&quot;
+</code></pre>
+<h3 id="compass">Compass</h3><p>We use Compass, you need to install and run &quot;compass compile&quot; in the
+portal directory before starting the portal (first time, and often)</p><p>Or from inside sbt:</p><pre><code class="lang-bash"># damn you Apple
+$ export ARCHFLAGS=&quot;-Wno-error=unused-command-line-argument-hard-error-in-future&quot;
+$ sudo -E gem install sass -v &quot;=3.3.4&quot;
+$ sudo -E gem install compass -v &quot;=1.0.0.alpha.19&quot;
+</code></pre>
+<h3 id="start">Start</h3>
+<pre><code class="lang-bash">$ sbt
+# …
+&gt; project portal
+&gt; container:start
+</code></pre><p>You need to have RabbitMQ installed and running when you start the portal
+locally, Scribe has a dependency on it.
+<em>*</em> Create an account</p><p>Grep logs for registration url:</p><p>2014-03-28 10:05:49.989 [pool-181-thread-1 ]  INFO  bootstrap.liftweb.MailerConfig - Dev mode message:</p><p>From: noreply@elemica.com
+To: sloan.thompson@elemica.com
+Subject: New User Account on Elemica&#39;s Quicklink Supply Chain Network
+X-MC-Subaccount: </p><p>Welcome!</p><p>An account has been created for you, with email sloan.thompson@elemica.com, on the Elemica Quicklink Supply Chain Network. 
+Please click on the following link to activate your account.</p><p><a href="http://localhost:8080/signup/0TLDWF4J4U2NPXZ4">http://localhost:8080/signup/0TLDWF4J4U2NPXZ4</a></p><p>Or use default login / password:</p><p>elemica.admin@elemica.com
+Elemica101</p><h3 id="issues">Issues</h3><p>If you&#39;re having trouble seeing data, you may not have your IP in
+cloudsearch.  Reach out to someone on ops team -- It is very helpful
+if you have a relatively static IP that we can add to the rules.</p><h2 id="unit-testing">Unit Testing</h2><p>To run unit tests for a project, first select a project in sbt and then
+run the tests. Example:</p><pre><code>&gt; project fabric
+&gt; test
+</code></pre><p>You need to have RabbitMQ installed and running when you run the tests,
+because Scribe has a dependency on it.</p><p>Running unit tests in the aggregate project, all, currently does not
+work. This is because unit tests in different projects will attempt
+to run FakeScribeInstance on the same port.</p><h2 id="building-microkernel-distributions">Building microkernel distributions</h2><p>Some Mercury projects deploy as an Akka microkernel distribution. Before running the <code>dist</code> task in any of these
+projects, make sure to select project &#39;all&#39; and run &#39;clean&#39; and &#39;package&#39;</p><h2 id="intellij-idea">IntelliJ IDEA</h2><p>This uses the <code>-Xdebug -Xrunjdwp:…</code> options in the <code>.sbtconfig</code> listed above.
+In your terminal:</p><pre><code class="lang-bash">$ sbt
+&gt; gen-idea
+# …
+&gt; project portal
+&gt; container:start
+</code></pre><p>Open IDEA, and open the &#39;mercury&#39; directory.
+Go to &quot;Run -&gt; Edit Configurations…&quot;, and create a <strong>&quot;Remote&quot;</strong> config.
+Make sure the port matches the setting above, give it a name, and hit OK.</p><p>Now you can do &quot;Run -&gt; Debug…&quot;, and IDEA will connect to the SBT running in your console.</p><h2 id="running-scribe-and-fabric-from-sbt">Running Scribe and Fabric from SBT</h2><p>You can easily start Scribe and Fabric microkernels from SBT using
+commands below:</p><pre><code># cleanup [optional step]
+&gt; ; project all; clean; package; dist
+# run
+&gt; dist-run
+# shutdown
+&gt; dist-shutdown
+</code></pre><h2 id="basic-seed-data">Basic Seed Data</h2><p>For locally testing the portal, it&#39;s necessary that a set of seed data be populated in
+scribe to login and access features. Run the following sbt commands to populate a basic
+set of seed data to the .filestore_root directory:</p><pre><code>project persistence
+populateBasicSeedData
+</code></pre><p>You&#39;ll need to run the <code>populateBasicSeedData</code> before you run
+the portal locally for the first time or if you purge your .filestore_root directory.</p><h2 id="discovery-seed-data">Discovery Seed Data</h2><p>Discovery is a feature that is difficult to test unless there is a large population
+(i.e. several thousand) of DiscoveryUnits in scribe. To load discovery units from a CSV
+file for local testing, run the following commands in sbt:</p><pre><code>project persistence
+populateDiscoverySeedData
+</code></pre><p>The <code>populateDiscoverySeedData</code> task purges DiscoveryUnits from local file storage if they
+exist and populates file storage with the latest discovery CSV file in universe/src/main/resources/data.</p>
+      </div>
+    </div>
+    <div id='footer'>
+  May 09, 14 06:23:50 by
+  <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
+    Codo
+  </a>
+  2.0.8
+  &#10034;
+  Press H to see the keyboard shortcuts
+  &#10034;
+  <a href='http://twitter.com/netzpirat' target='_parent'>@netzpirat</a>
+  &#10034;
+  <a href='http://twitter.com/_inossidabile' target='_parent'>@_inossidabile</a>
+</div>
+<iframe id='search_frame'></iframe>
+<div id='fuzzySearch'>
+  <input type='text'>
+  <ol></ol>
+</div>
+<div id='help'>
+  <p>
+    Quickly fuzzy find classes, mixins, methods, file:
+  </p>
+  <ul>
+    <li>
+      <span>T</span>
+      Open fuzzy finder dialog
+    </li>
+  </ul>
+  <p>
+    Control the navigation frame:
+  </p>
+  <ul>
+    <li>
+      <span>L</span>
+      Toggle list view
+    </li>
+    <li>
+      <span>C</span>
+      Show class list
+    </li>
+    <li>
+      <span>I</span>
+      Show mixin list
+    </li>
+    <li>
+      <span>F</span>
+      Show file list
+    </li>
+    <li>
+      <span>M</span>
+      Show method list
+    </li>
+    <li>
+      <span>E</span>
+      Show extras list
+    </li>
+  </ul>
+  <p>
+    You can focus and blur the search input:
+  </p>
+  <ul>
+    <li>
+      <span>S</span>
+      Focus search input
+    </li>
+    <li>
+      <span>Esc</span>
+      Blur search input
+    </li>
+  </ul>
+</div>
+  </body>
+</html>
