@@ -89,7 +89,7 @@ On OS X, that is <code>/usr/local/share/npm/bin</code>.</p><p>When you make eith
 to run <code>resources:copy-scripts</code> in portal project for sbt. You can run
 it continuously by running <code>~resources:copy-scripts</code>. This will detect
 JS and CoffeeScript changes, compile the CoffeeScript if necessary,
-and copy the scripts to src/main/webapp/static/js where they belong.</p><h3 id="sbt-configuration">SBT configuration</h3><p>Create a file named <code>~/.sbtconfig</code>, and put this in it:</p><pre><code class="lang-sh">SBT_OPTS=&quot;-XX:+CMSClassUnloadingEnabled -Xmx2048M -XX:MaxPermSize=1024M -DSCRIBE_NO_AUDIT=true -Dcom.elemica.env=lcl -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005&quot;
+and copy the scripts to src/main/webapp/static/js where they belong.</p><h3 id="sbt-configuration">SBT configuration</h3><p>Create a file named <code>~/.sbtconfig</code>, and put this in it:</p><pre><code class="lang-sh">SBT_OPTS=&quot;-XX:+CMSClassUnloadingEnabled -Xmx2048M -XX:MaxPermSize=1024M -Dcom.elemica.env=lcl -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005&quot;
 </code></pre>
 <h3 id="compass">Compass</h3><p>We use Compass, you need to install and run &quot;compass compile&quot; in the
 portal directory before starting the portal (first time, and often)</p><p>Or from inside sbt:</p><pre><code class="lang-bash"># damn you Apple
@@ -147,7 +147,7 @@ exist and populates file storage with the latest discovery CSV file in universe/
       </div>
     </div>
     <div id='footer'>
-  May 09, 14 06:30:51 by
+  May 11, 14 07:22:22 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>

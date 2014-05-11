@@ -56,9 +56,112 @@
           </td>
         </tr>
       </table>
+      <h2>Variables Summary</h2>
+      <dl class='constants'>
+  <dt id='computed-variable'>
+    computed
+    =
+  </dt>
+  <dd>
+    <pre><code class='coffeescript'>{
+  computedCurrentResults: function() {
+    return this.doSearch(this.currentSearch(), this.page(), this.descendingOrder());
+  },
+  size: function() {
+    var data;
+    data = this.currentResults();
+    if (data.size) {
+      return data.size;
+    } else {
+      return 0;
+    }
+  },
+  pages: function() {
+    var data;
+    data = this.currentResults();
+    if (data.pages) {
+      return data.pages;
+    } else {
+      return 0;
+    }
+  },
+  hasDateRange: function() {
+    return this.fromDate() &amp;&amp; this.toDate();
+  },
+  dateRange: function() {
+    var endDate, startDate;
+    if (!(this.fromDate() &amp;&amp; this.toDate())) {
+      return &quot;All dates&quot;;
+    }
+    startDate = Date.parse(this.englishFromDate()).toString(elemica.formats.shortDateFormat);
+    endDate = Date.parse(this.englishToDate()).toString(elemica.formats.shortDateFormat);
+    if (startDate === endDate) {
+      return startDate;
+    } else {
+      return &quot;&quot; + startDate + &quot; – &quot; + endDate;
+    }
+  },
+  isResultEmpty: function() {
+    return !this.isLoading() &amp;&amp; this.size() === 0;
+  },
+  searchIncomplete: function() {
+    return this.isLoading() || this.isResultEmpty();
+  },
+  statusFilterAll: function() {
+    return this.status() === void 0;
+  },
+  statusFilterSuccess: function() {
+    return this.status() === 1;
+  },
+  statusFilterFailure: function() {
+    return this.status() === 2;
+  },
+  csvDownloadEnabled: function() {
+    return !this.isLoading() &amp;&amp; this.size() !== 0;
+  },
+  results: function() {
+    var data, newFlipbook, rawFlipbooks, x, _i, _len, _results;
+    data = this.currentResults();
+    rawFlipbooks = data.results || [];
+    newFlipbook = (function(_this) {
+      return function(rawFlipbook) {
+        var instance;
+        instance = new Flipbook(rawFlipbook.id, rawFlipbook.timestamp, rawFlipbook.concepts, rawFlipbook.success, rawFlipbook.status);
+        instance.selected.subscribe(function(val) {
+          var r, _i, _len, _ref, _results;
+          if (val) {
+            _this.selectedFlipbook(instance);
+            _ref = _this.results();
+            _results = [];
+            for (_i = 0, _len = _ref.length; _i &lt; _len; _i++) {
+              r = _ref[_i];
+              if (r !== instance) {
+                _results.push(r.selected(false));
+              }
+            }
+            return _results;
+          }
+        });
+        return instance;
+      };
+    })(this);
+    _results = [];
+    for (_i = 0, _len = rawFlipbooks.length; _i &lt; _len; _i++) {
+      x = rawFlipbooks[_i];
+      _results.push(newFlipbook(x));
+    }
+    return _results;
+  },
+  csvDownloadUrl: function() {
+    return &quot;&#47;api&#47;config&#47;export&#47;&quot; + this.searchId();
+  }
+}</code></pre>
+    
+  </dd>
+</dl>
     </div>
     <div id='footer'>
-  May 09, 14 06:30:51 by
+  May 11, 14 07:22:22 by
   <a href='https://github.com/coffeedoc/codo' title='CoffeeScript API documentation generator'>
     Codo
   </a>
